@@ -34,15 +34,57 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1.Define the Module
+- Create a Verilog module for the SR flip-flop with inputs (S, R, clk) and outputs (Q, Q').
+2.Write the Behavioral Code
+- Use an always block triggered on the positive edge of the clock to define the behavior based on S and R inputs.
+3. Include Reset Logic (Optional)
+- Implement synchronous or asynchronous reset to initialize the flip-flop state.
+4. Create a Testbench
+- Write a Verilog testbench to apply different input values (S, R) and observe the output (Q).
+5. Simulate the Design
+- Use simulation tools like ModelSim or Quartus to verify the functional behavior.
+6. Validate Using Functional Tables
+- Compare the simulation results with the expected truth table of an SR flip-flop
+
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+```
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin 
+    if(!reset)       
+			q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;   
+        2'b01:q<=1'b0;  
+        2'b10:q<=1'b1;   
+        2'b11:q<=1'bx;
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
+Developed by: DIVYASHREE B RegisterNumber:212224040081
+
 
 **RTL LOGIC FOR FLIPFLOPS**
 
+![image](https://github.com/user-attachments/assets/a9add376-a356-40ac-99c5-9d9e2d020d66)
+
+
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
+![image](https://github.com/user-attachments/assets/1367e5ae-ec49-4147-91c0-8d6824f3c595)
+
+
 **RESULTS**
+ SR flipflop using verilog and validating their functionality using their functional tables are verified.
+
